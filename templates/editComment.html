@@ -1,0 +1,36 @@
+{% extends "padre.html" %}
+
+{% block head %}
+    {{parent()}}
+{% endblock %}
+
+{% block cabecera %}
+    {{parent()}}
+{% endblock%}
+
+{% block perfil %}
+{% endblock %}
+
+
+{% block central %}
+    <div id="registro">
+        <center>
+        <h2> Edita el comentario </h2><br>
+        <form id="formulario" action="editComment.php" method="POST">
+            <center>
+            
+            <textarea type="text" id="texto" name="texto" rows="4" cols="50">{{comentario['texto']}}</textarea><br><br>
+            
+            
+            <input type="submit" id="botonEntrar" value="Guardar cambios">
+        </form>
+        </center>
+    </div>
+{% endblock %}
+
+
+{% block aside %}
+{% endblock %}
+
+{% block js %}
+{% endblock %}

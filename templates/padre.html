@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+{% block head %}
+    <!-- Titulo -->
+	<title>ZamuFest</title>
+	
+	<!-- Logo -->
+	<link rel="icon" type="image/png" href="img/icono.png" />
+	
+	<!-- Set caracteres -->
+	<meta charset="UTF-8">
+	
+	<!-- Estilo -->
+	<link rel="stylesheet" href="styles/estilo.css">
+	
+	<!-- Autor -->
+	<meta name="author" content="Jorge Zamudio Gutierrez">
+	
+	<!-- Flexibilidad entre dispositivos -->
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+{% endblock %}
+</head>
+
+<body>
+
+    <header>
+	{% block cabecera %}
+        <!-- Logo -->
+        <img class="logo" src="img/icono.png">
+
+        <!-- Titulo -->
+        <img class="titulo" src="img/Titulo.png">
+        
+
+        <!-- Menú -->
+		<ul class="nav">
+		
+      		<li><a href="index.php">Inicio</a></li>
+            
+            <li><a href="index.php">Contacta</a>
+                <ul>
+                    <li><a href="https://twitter.com/">Twitter</a></li>
+                    <li><a href="https://www.instagram.com/?hl=es">Instagram</a></li>
+                    <li><a href="https://www.spotify.com/es/">Spotify</a></li>
+                </ul>
+            </li>
+            {% if usuario.tipo > 1 %}
+            <li><a href="comentarios.php">Comentarios</a></li>
+            {% endif %}
+            {% if usuario.tipo > 2 %}
+            <li><a href="eventos.php">Eventos</a></li>
+            {% endif %}
+            {% if usuario.tipo > 3 %}
+            <li><a href="usuarios.php">Usuarios</a></li>
+            {% endif %}
+            
+      	</ul>
+      	
+    {% endblock %}
+	</header>
+	
+	{% block resultadosBusqueda %}
+    {% endblock %}
+	
+	{% block perfil %}
+	<div id="perfilUsuario">
+        {% if not usuario %}
+            <h2><center> Iniciar Sesión </center></h2>
+            <form id="formulario" action="signIn.php" method="post">
+                <label for="nickname">Usuario:</label><br>
+                <input type="text" id="nickname" name="nickname" placeholder="Nombre de usuario..."><br><br>
+                <label for="password">Contraseña:</label><br>
+                <input type="text" id="password" name="password" placeholder="Contraseña..."><br><br>
+                <center><input type="submit" id="botonEntrar" value="Entrar"></center>
+                <p>¿No estás registrado? <b><a href="signUp.php"> Crea una cuenta aquí</a></b> </p>
+            </form>
+        {% else %}
+            <center>
+            <img src="img/defaultProfileIMG.png" width="100" height="100">
+            <h3> Bienvenido {{usuario.nombre}} </h3>
+            {% if usuario.tipo == 1 %}
+                <p> Cuenta de usuario registrado </p>
+            {% elseif usuario.tipo == 2 %}
+                <p> Cuenta de moderador </p>
+            {% elseif usuario.tipo == 3 %}
+                <p> Cuenta de gestor </p>
+            {% else %}
+                <p> Cuenta de superusuario </p>
+            {% endif %}
+            <b><a href="editProfile.php"> Editar perfil</a></b>
+            <br>
+            <b><a href="signOut.php"> Cerrar sesión</a></b>
+            </center>
+        {% endif %}
+	</div>
+	{% endblock %}
+	
+	{% block central %}
+	{% endblock %}
+	
+	{% block aside%}
+	<aside>
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque rhoncus, nisi vitae pulvinar efficitur, nunc neque ultrices eros, at varius eros massa vitae leo. Phasellus ultrices fermentum mauris, nec vehicula est mollis in. Sed mauris purus, pharetra a eros quis, hendrerit malesuada orci. Sed sit amet orci eget lorem sodales euismod convallis id mi. Nulla quis dui ut nunc accumsan sagittis in non justo. Cras eu efficitur tellus, ut malesuada ex. Nam ut tortor risus. Suspendisse tincidunt mauris eu mattis bibendum. Maecenas posuere feugiat lectus, nec posuere ligula malesuada sed. Quisque ac faucibus turpis. </p> 
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque rhoncus, nisi vitae pulvinar efficitur, nunc neque ultrices eros, at varius eros massa vitae leo. Phasellus ultrices fermentum mauris, nec vehicula est mollis in. Sed mauris purus, pharetra a eros quis, hendrerit malesuada orci. Sed sit amet orci eget lorem sodales euismod convallis id mi. Nulla quis dui ut nunc accumsan sagittis in non justo. Cras eu efficitur tellus, ut malesuada ex. Nam ut tortor risus. Suspendisse tincidunt mauris eu mattis bibendum. Maecenas posuere feugiat lectus, nec posuere ligula malesuada sed. Quisque ac faucibus turpis. </p> 
+	
+	</aside>
+	{% endblock %}
+	
+    <footer>
+    {% block pie %}
+        <center><p><b> Jorge Zamudio Gutiérrez - 2021 </b></p></center>
+    {% endblock %}
+    </footer>
+    
+    {% block js %}
+    <script src="js/script.js"></script>
+    {% endblock %}
+
+</body>
+
+
+
+</html>

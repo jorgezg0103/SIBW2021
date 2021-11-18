@@ -1,0 +1,86 @@
+{% extends "padre.html" %}
+    
+{% block head %}
+    {{parent()}}
+{% endblock %}
+
+{% block cabecera %}
+    {{parent()}}
+{% endblock %}
+
+{% block central %}
+
+<div id="dialogoError" class="modal">
+    <span class="close">x</span>
+    <p> Se ha producido un error: Debe rellenar todos los campos del formulario. El email debe ser válido. </p>
+
+</div>
+
+
+<button id="botonComentarios">Comentarios</button>
+
+<div id="comentarios">
+    
+    {% for comentario in comentarios %}
+        
+        <h3 id="nombre"> {{comentario.0}} </h3> 
+        {% if comentario.5 == 1 %} (Comentario modificado) {% endif %}
+        <h3 id="fecha"> {{comentario.1}}</h3>
+        <h3 id="hora"> {{comentario.2}}</h3>
+        {% if usuario.tipo > 1 %}
+            <form>
+                <input type="submit" id="borrar" name="borrar" value="{{comentario.4}}" formmethod="POST" />
+                <input type="submit" id="editar" name="editar" value="{{comentario.4}}" formmethod="POST"/>
+            </form>
+        {% endif %}
+        <p id="comentario">{{comentario.3}}</p> 
+        
+    {% endfor %}
+    
+    
+    {% if not usuario %}
+        <center><b><p> Regístrate para introducir comentarios! </p></b></center>
+    {% else %}
+        <form id="formulario" action="evento.php?ev={{evento.id}}" method="POST">
+
+            <label for="texto">Comentario:</label><br>
+            <textarea type="text" id="texto" name="texto" rows="4" cols="20"></textarea><br><br>
+            
+            <input type="submit" id="botonEnviar" value="Enviar">
+        </form>
+    {% endif %}
+
+</div>
+
+<section id="main"  class="main">
+    
+    <!-- Listado de eventos -->
+    <section class="evento">
+
+        <img src= {{evento['rutaImagen1']}}>
+
+        <h1> {{ evento['nombre'] }} </h1>
+        <h2> Organizador : {{ evento['organizador'] }} </h2>
+        <h3> Fecha : {{ evento['fecha'] }} </h3>
+
+        <p>
+            {{ evento['descripcion'] }}
+        </p>
+        
+        <img src={{evento['rutaImagen2']}}>
+
+        <h3> Condiciones generales </h3>
+        <p>
+            Según establece el artículo 4 de la ley 13/1999 de 15 de diciembre de la Junta de Andalucía, de Espectáculos Públicos y Actividades Recreativas de Andalucía, MEJOR CON MÚSICA ZAMUDIENSE AIE CIF: V-197457345, en su condición de organizadora del ZAMUFEST, establece condiciones de admisión, así como instrucciones y normativas particulares para el normal desarrollo del espectáculo. Aquellos puntos que no se especifiquen o regulen en las siguientes líneas, serán aplicados bajo la legislación autonómica y estatal vigente.
+        </p>
+
+    </section>
+
+    <section class="boton">
+        <a href="evento_imprimir.php?ev={{evento['id']}}">Imprimir Info</a>
+    </section>
+
+</section>
+{% endblock %}
+
+

@@ -1,0 +1,100 @@
+ 
+-- Eventos
+
+CREATE TABLE eventos(
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nombre VARCHAR(100),
+  lugar VARCHAR(100),
+  organizador VARCHAR(100),
+  descripcion TEXT,
+  fecha DATE
+);
+ALTER TABLE eventos ADD COLUMN publicado BOOLEAN DEFAULT false;
+
+-- Insertamos los datos de algunos eventos
+
+INSERT INTO eventos (nombre, lugar, organizador, descripcion, fecha) VALUES ('Grazalema Sound', 'Grazalema', 'FoxReactor', 'El Grazalema Sound!!! El mejor festival del mundo!Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque rhoncus, nisi vitae pulvinar efficitur, nunc neque ultrices eros, at varius eros massa vitae leo. Phasellus ultrices fermentum mauris, nec vehicula est mollis in. Sed mauris purus, pharetra a eros quis, hendrerit malesuada orci. Sed sit amet orci eget lorem sodales euismod convallis id mi. Nulla quis dui ut nunc accumsan sagittis in non justo. Cras eu efficitur tellus, ut malesuada ex. Nam ut tortor risus. Suspendisse tincidunt mauris eu mattis bibendum. Maecenas posuere feugiat lectus, nec posuere ligula malesuada sed. Quisque ac faucibus turpis.', '2021-05-04');
+
+
+INSERT INTO eventos (nombre, lugar, organizador, descripcion, fecha) VALUES ('Jayena Festival', 'Jayena', 'SmallIsle', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque rhoncus, nisi vitae pulvinar efficitur, nunc neque ultrices eros, at varius eros massa vitae leo. Phasellus ultrices fermentum mauris, nec vehicula est mollis in. Sed mauris purus, pharetra a eros quis, hendrerit malesuada orci. Sed sit amet orci eget lorem sodales euismod convallis id mi. Nulla quis dui ut nunc accumsan sagittis in non justo. Cras eu efficitur tellus, ut malesuada ex. Nam ut tortor risus. Suspendisse tincidunt mauris eu mattis bibendum. Maecenas posuere feugiat lectus, nec posuere ligula malesuada sed. Quisque ac faucibus turpis.', '2021-06-20');
+
+INSERT INTO eventos (nombre, lugar, organizador, descripcion, fecha) VALUES ('RondaLand', 'Ronda', 'Turtle Effects', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque rhoncus, nisi vitae pulvinar efficitur, nunc neque ultrices eros, at varius eros massa vitae leo. Phasellus ultrices fermentum mauris, nec vehicula est mollis in. Sed mauris purus, pharetra a eros quis, hendrerit malesuada orci. Sed sit amet orci eget lorem sodales euismod convallis id mi. Nulla quis dui ut nunc accumsan sagittis in non justo. Cras eu efficitur tellus, ut malesuada ex. Nam ut tortor risus. Suspendisse tincidunt mauris eu mattis bibendum. Maecenas posuere feugiat lectus, nec posuere ligula malesuada sed. Quisque ac faucibus turpis.', '2021-06-15');
+
+
+
+-- Imagenes
+
+CREATE TABLE imagenes(
+    id INT REFERENCES eventos(id),
+    rutaImagen1 VARCHAR(100),
+    rutaImagen2 VARCHAR(100),
+    PRIMARY KEY (id)
+);
+
+-- Insertamos los datos de las imagenes
+
+INSERT INTO imagenes VALUES ('1','img/grazalema.jpg', 'img/fest1.jpg');
+INSERT INTO imagenes VALUES ('2', 'img/jayena.jpg', 'img/fest2.jpg');
+INSERT INTO imagenes VALUES ('3', 'img/ronda.jpg', 'img/fest3.jpg');
+
+-- Etiquetas
+
+CREATE TABLE etiquetas(
+    id INT REFERENCES eventos(id),
+    tag VARCHAR(50),
+    PRIMARY KEY(id, tag)
+);
+
+INSERT INTO etiquetas VALUES ('1', 'fiesta');
+INSERT INTO etiquetas VALUES ('2', 'electronica');
+INSERT INTO etiquetas VALUES ('3', 'rock');
+
+-- Comentarios
+
+CREATE TABLE comentarios(
+    idEvento INT REFERENCES eventos(id),
+    idComentario INT AUTO_INCREMENT,
+    modificado BOOLEAN DEFAULT false,
+    nombre VARCHAR(100),
+    fecha DATE,
+    hora TIME,
+    texto TEXT,
+    PRIMARY KEY (idComentario)
+);
+
+INSERT INTO comentarios (idEvento, nombre, fecha, hora, texto) VALUES ('1', 'Jorge', '2021/05/23', '10:10', 'Me encanta!');
+
+-- Usuarios
+
+CREATE TABLE usuarios(
+    nickname VARCHAR(50) PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL,
+    apellidos VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    password VARCHAR(100) NOT NULL,
+    tipo INT NOT NULL,
+    CONSTRAINT CHK_tipo CHECK (tipo>=1 AND tipo<=4)
+);
+
+-- Password: juan
+insert INTO usuarios VALUES ('juanito', 'Juan', 'Garcia Perez', 'juan@gmail.com', '$2y$10$0u/BVJlN9pU4HIJZ9pbdIesoSpU9bIhu348J83nk1wI/hU4A5.ETm', '1');
+
+
+-- Password: pepe
+insert INTO usuarios VALUES ('pepito', 'Jose', 'Tirado Caballero', 'pepito24521@hotmail.es', '$2y$10$ac5KBKDfzbMNfp6BKaKa1e07pHwF4FYViHznRmhXqzWtkanpiLen2', '2');
+
+-- Password: arturo
+insert INTO usuarios VALUES ('arturito', 'Arturo', 'Mena Riojas', 'arturo@correo.ugr.es', '$2y$10$EPKxAOm8WZYbj/FmvbJ5f.atf1ZrxD8R/u9yMlskltzSDgdnIScBC', '3');
+
+-- Password: califato
+insert INTO usuarios VALUES ('califa', 'Jorge', 'Zamudio Gutierrez', 'jorgezg@correo.ugr.es', '$2y$10$qUV4ij.fp4h8Sqr6y2RiBesvtcd9BD.hnH7o94VBV9iC4iz6/xIj.', '4');
+
+
+
+
+
+
+
+
+
+

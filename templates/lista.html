@@ -1,0 +1,13 @@
+<ul>
+
+    {% if listaEventos %}
+        {% for fila in listaEventos %}
+            {% if (fila["publicado"] or usuario.tipo > 2) %}
+                <li><a href="evento.php?ev={{fila["id"]}}"> {{ fila["nombre"] }} </a></li>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        <li> Evento no encontrado </li>
+    {% endif %}
+
+</ul>

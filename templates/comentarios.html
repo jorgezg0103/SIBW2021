@@ -1,0 +1,47 @@
+{% extends "padre.html" %}
+
+{% block head %}
+    {{parent()}}
+{% endblock %}
+
+{% block cabecera %}
+    {{parent()}}
+{% endblock%}
+
+{% block perfil %}
+{% endblock %}
+
+
+{% block central %}
+    <div id="registro">
+        
+        <h2> Comentarios </h2><br>
+        <table style="width:100%">
+            <tr>
+                <th>Nombre</th>
+                <th>Texto</th> 
+                <th>Operaciones</th>
+            </tr>
+            {% for comentario in comentarios %}
+            <tr>
+                <td>{{comentario.0}}</td>
+                <td>{{comentario.3}}</td>
+                <td>
+                    <form>
+                        <input type="submit" id="borrar" name="borrar" value="{{comentario.4}}" formmethod="POST" />
+                        <input type="submit" id="editar" name="editar" value="{{comentario.4}}" formmethod="POST"/>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        
+    </div>
+{% endblock %}
+
+
+{% block aside %}
+{% endblock %}
+
+{% block js %}
+{% endblock %}

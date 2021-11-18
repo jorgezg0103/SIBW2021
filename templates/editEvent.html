@@ -1,0 +1,63 @@
+{% extends "padre.html" %}
+
+{% block head %}
+    {{parent()}}
+{% endblock %}
+
+{% block cabecera %}
+    {{parent()}}
+{% endblock%}
+
+{% block perfil %}
+{% endblock %}
+
+
+{% block central %}
+    <div id="registro">
+
+        <h2> Edita el evento </h2><br>
+        <form id="formulario" action="editEvent.php" method="POST">
+                        
+            <label for="nombre">Nombre:</label><br>
+            <input type="text" id="nombreF" name="nombre" value="{{evento['nombre']}}" required><br><br>
+            
+            <label for="lugar">Lugar:</label><br>
+            <input type="text" id="texto" name="lugar" value="{{evento['lugar']}}"><br><br>
+            
+            <label for="organizador">Organizador:</label><br>
+            <input type="text" id="texto" name="organizador" value="{{evento['organizador']}}"><br><br>
+            
+            <label for="descripcion">Descripcion:</label><br>
+            <textarea type="text" id="texto" name="descripcion" rows="8" cols="70">{{evento['descripcion']}}</textarea><br><br>
+            
+            <label for="fecha">Fecha :</label><br>
+            <input type="text" id="texto" name="fecha" value="{{evento['fecha']}}"><br><br>
+            
+            <label for="ruta1">Ruta de imagen 1:</label><br>
+            <input type="text" id="texto" name="ruta1" value="{{evento['rutaImagen1']}}" required><br><br>
+            
+            <label for="ruta2">Ruta de imagen 2:</label><br>
+            <input type="text" id="texto" name="ruta2"  value="{{evento['rutaImagen2']}}" required><br><br>
+            
+            <label for="tag">Etiqueta:</label><br>
+            <input type="text" id="texto" name="tag" required><br><br>
+            
+            <label for="estado">Estado de publicación:</label><br>
+            <select id="select" name="estado">
+                <option id="option" value="0">No Publicado</option>
+                <option id="option" value="1">Publicado</option>
+            </select>
+            <br><br>
+            
+            <input type="submit" id="botonEntrar" value="Guardar cambios">
+        </form>
+
+    </div>
+{% endblock %}
+
+
+{% block aside %}
+{% endblock %}
+
+{% block js %}
+{% endblock %}

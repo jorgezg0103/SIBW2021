@@ -1,0 +1,51 @@
+{% extends "padre.html" %}
+
+{% block head %}
+    {{parent()}}
+{% endblock %}
+
+{% block cabecera %}
+    {{parent()}}
+{% endblock%}
+
+{% block perfil %}
+{% endblock %}
+
+
+{% block central %}
+    <div id="registro">
+        
+        <h2> Eventos </h2><br>
+        <form>
+            <input type="text" id="texto" name="buscar">
+            <input type="submit" id="button" value="Buscar" formmethod="POST"/>
+        </form>
+        <table style="width:100%">
+            <tr>
+                <th>Nombre</th>
+                <th>Descripción</th> 
+                <th>Operaciones</th>
+            </tr>
+            {% for evento in eventos %}
+            <tr>
+                <td>{{evento.1}}</td>
+                <td>{{evento.4}}</td>
+                <td>
+                    <form>
+                        <input type="submit" id="borrar" name="borrar" value="{{evento.0}}" formmethod="POST" />
+                        <input type="submit" id="editar" name="editar" value="{{evento.0}}" formmethod="POST"/>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        
+    </div>
+{% endblock %}
+
+
+{% block aside %}
+{% endblock %}
+
+{% block js %}
+{% endblock %}

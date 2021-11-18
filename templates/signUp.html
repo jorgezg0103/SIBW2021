@@ -1,0 +1,47 @@
+{% extends "padre.html" %}
+
+{% block head %}
+    {{parent()}}
+{% endblock %}
+
+{% block cabecera %}
+    {{parent()}}
+{% endblock%}
+
+{% block perfil %}
+{% endblock %}
+
+
+{% block central %}
+    <div id="registro">
+        <center>
+        <h2> Crear una cuenta </h2><br>
+        <form id="formulario" action="signUp.php" method="POST">
+            <center>
+            <label for="nickname">Nickname:</label><br>
+            <input type="text" id="nickname" name="nickname"><br><br>
+            
+            <label for="nombre">Nombre:</label><br>
+            <input type="text" id="nombreF" name="nombre"><br><br>
+            
+            <label for="apellidos">Apellidos:</label><br>
+            <input type="text" id="apellidos" name="apellidos"><br><br>
+            
+            <label for="email">Email:</label><br>
+            <input type="text" id="email" name="email"><br><br>
+            
+            <label for="password">Contraseña:</label><br>
+            <input type="password" id="password" name="password"><br><br>
+            
+            <input type="submit" id="botonEntrar" value="Registrarse">
+        </form>
+        </center>
+    </div>
+{% endblock %}
+
+
+{% block aside %}
+{% endblock %}
+
+{% block js %}
+{% endblock %}

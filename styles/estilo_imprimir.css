@@ -1,0 +1,106 @@
+/* Selector universal */
+*{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    color: white;
+    border-width: 1px;
+    border-color: #333333;
+}
+
+/* Párrafos */
+p {
+    padding: 10px;
+}
+
+/* Enlaces */
+a {
+    color: white;
+	text-decoration: none;
+	display: block;
+}
+
+/* Insercion de fondo */
+body {
+	background: url(../img/fondo_des.png) no-repeat fixed;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+}
+
+/* Ajustes de Header */
+header{
+    width: 70%;
+    margin-left: 15%;
+
+	background-color:dimgrey;
+	background-size: cover;
+	background-position: center;
+	border-style: groove;
+
+	position: relative;
+}
+
+.logo{
+	position: relative;
+	display: inline-block;
+	margin-top: 2%;
+	margin-bottom: 2%;
+	margin-left: 2%;
+}
+
+
+.titulo{
+	position: relative;
+	display: inline-block;
+	width: 50%;
+	height: 50%;
+	margin-left: 15%;
+}
+
+/* Ajustes de Main */
+.main{
+	width: 70%;
+    margin-right: 15%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+	float: right;
+	border-style: groove;
+	background-color:dimgrey;
+	background-size: cover;
+	background-position: center;
+}
+
+.evento h1{
+	font-size: 32px;
+	padding: 10px;
+}
+
+.evento h2{
+	font-size: 26px;
+	margin-left: 20px;
+	padding: 10px;
+}
+
+.evento h3{
+	font-size: 22px;
+	margin-left: 20px;
+	padding: 10px;
+}
+
+.evento img{
+	width: 20%;
+	height: 20%;
+	float:right;
+	margin: 2%;
+}
+
+/* Ajuste de Footer */
+footer{
+    margin-left: 15%;
+    width: 70%;
+    clear: both;
+	background-color:dimgrey;
+	background-size: cover;
+	background-position: center;
+}

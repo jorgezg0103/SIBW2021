@@ -1,0 +1,99 @@
+{% extends "padre.html" %}
+
+{% block head %}
+    {{parent()}}
+{% endblock %}
+
+{% block cabecera %}
+    <img class="logo" src="img/icono.png">
+
+    <!-- Titulo -->
+    <img class="titulo" src="img/Titulo.png">
+    <ul class="nav">
+		
+      		<li><a href="index.php">Inicio</a></li>
+            
+            <li><a href="index.php">Contacta</a>
+                <ul>
+                    <li><a href="https://twitter.com/">Twitter</a></li>
+                    <li><a href="https://www.instagram.com/?hl=es">Instagram</a></li>
+                    <li><a href="https://www.spotify.com/es/">Spotify</a></li>
+                </ul>
+            </li>
+            {% if usuario.tipo > 1 %}
+            <li><a href="comentarios.php">Comentarios</a></li>
+            {% endif %}
+            {% if usuario.tipo > 2 %}
+            <li><a href="eventos.php">Eventos</a></li>
+            {% endif %}
+            {% if usuario.tipo > 3 %}
+            <li><a href="usuarios.php">Usuarios</a></li>
+            {% endif %}
+            
+            
+            <div class="buscador">
+                <form>
+                    <input type="text" id="evento" name="buscar" placeholder="Buscar eventos...">
+                    <input type="submit" id="buscar" value="Buscar" name="buscar" formmethod="POST"/>
+                </form>
+            </div>
+            
+    </ul>
+      	
+{% endblock%}
+
+
+{% block resultadosBusqueda %}
+<div id="listaEventos" class="listaEventos"></div>
+{% endblock%}
+
+{% block central %}
+<!-- Sección principal -->
+<section id="main" class="main">
+    
+    <!-- Listado de eventos -->
+    <section class="articles">
+    
+    
+    {% if usuario.tipo > 2 %}
+        {% for evento in eventos %}
+            <article>
+                <center>
+                    <a href="evento.php?ev={{evento[0]}}"><img src="{{evento[7]}}"></a>
+                    <a href="evento.php?ev={{evento[0]}}"> {{evento[1]}} </a>
+                        <form>
+                            <input type="submit" id="borrar" name="borrar" value="{{evento[0]}}" formmethod="POST" />
+                            <input type="submit" id="editar" name="editar" value="{{evento[0]}}" formmethod="POST"/>
+                        </form>
+                </center>
+            </article>
+        {% endfor %}
+        <article>
+               <center> <a href="addEvent.php"> <img src="img/add.png"> </a> </center>
+        </article>
+    {% else %}
+        {% for evento in eventos %}
+            <!-- Comprobamos si esta publicado el evento -->
+            {% if evento[8]  %}
+                <article>
+                    <center>
+                        <a href="evento.php?ev={{evento[0]}}"><img src="{{evento[7]}}"></a>
+                        <a href="evento.php?ev={{evento[0]}}"> {{evento[1]}} </a>
+                    </center>
+                </article>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+    
+
+        
+
+    </section>
+
+</section>
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript" src="js/autoCompletar.js"></script>
+{% endblock %}
+

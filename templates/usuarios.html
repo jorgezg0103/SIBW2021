@@ -1,0 +1,69 @@
+{% extends "padre.html" %}
+
+{% block head %}
+    {{parent()}}
+{% endblock %}
+
+{% block cabecera %}
+    {{parent()}}
+{% endblock%}
+
+{% block perfil %}
+{% endblock %}
+
+
+{% block central %}
+    <div id="registro">
+        
+        <h2> Usuarios </h2><br>
+
+        <table style="width:100%">
+            <tr>
+                <th>Nickname</th>
+                <th>Nombre</th> 
+                <th>Apellidos</th>
+                <th>Email</th>
+                <th>Tipo</th>
+                <th>Operaciones</th>
+            </tr>
+            {% for usuario in usuarios %}
+            <tr>
+                <td>{{ usuario.0 }}</td>
+                <td>{{ usuario.1 }}</td>
+                <td>{{ usuario.2 }}</td>
+                <td>{{ usuario.3 }}</td>
+                <td>
+                    {% if usuario.4 == 1 %}
+                        <p> Registrado </p>
+                    {% elseif usuario.4 == 2 %}
+                        <p> Moderador </p>
+                    {% elseif usuario.4 == 3 %}
+                        <p> Gestor </p>
+                    {% else %}
+                        <p> Superusuario </p>
+                    {% endif %}
+                </td>
+                <td>
+                    <form method="POST">
+                        <select id="select" name="tipo">
+                            <option id="option" value="1">Registrado</option>
+                            <option id="option" value="2">Moderador</option>
+                            <option id="option" value="3">Gestor</option>
+                            <option id="option" value="4">SuperUsuario</option>
+                        </select>
+                        <input type="submit" id="editar" name="id" value="{{usuario.0}}"/>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        
+    </div>
+{% endblock %}
+
+
+{% block aside %}
+{% endblock %}
+
+{% block js %}
+{% endblock %}

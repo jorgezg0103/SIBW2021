@@ -1,0 +1,75 @@
+{% extends "padre.html" %}
+
+
+{% block head %}
+
+    <!-- Titulo -->
+    <title>ZamuFest</title>
+    
+    <!-- Logo -->
+    <link rel="icon" type="image/png" href="img/icono.png" />
+    
+    <!-- Set caracteres -->
+    <meta charset="UTF-8">
+    
+    <!-- Estilo -->
+    <link rel="stylesheet" type="text/css" href="styles/estilo_imprimir.css">
+    
+    <!-- Autor -->
+    <meta name="author" content="Jorge Zamudio Gutierrez">
+    
+    <!-- Flexibilidad entre dispositivos -->
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+{% endblock %}
+
+{% block cabecera %}    
+
+    <!-- Logo -->
+    <img class="logo" src="img/icono_des.png">
+
+    <!-- Titulo -->
+    <img class="titulo" src="img/Titulo.png"> 
+
+{% endblock %}
+
+{% block perfil %}
+{% endblock %}
+
+{% block central %}
+    <section class="main">
+        
+        <!-- Listado de eventos -->
+        <section class="evento">
+
+            <img src= {{evento['rutaImagen1']}}>
+
+            <h1> {{evento['nombre']}} </h1>
+            <h2> Organizador: {{evento['organizador']}} </h2>
+            <h3> Fecha: {{evento['fecha']}} </h3>
+
+            <p>
+                {{evento['descripcion']}}
+            </p>
+            
+            <img src= {{evento['rutaImagen2']}}>
+
+            <h3> Condiciones generales </h3>
+        <p>
+            Según establece el artículo 4 de la ley 13/1999 de 15 de diciembre de la Junta de Andalucía, de Espectáculos Públicos y Actividades Recreativas de Andalucía, MEJOR CON MÚSICA ZAMUDIENSE AIE CIF: V-197457345, en su condición de organizadora del ZAMUFEST, establece condiciones de admisión, así como instrucciones y normativas particulares para el normal desarrollo del espectáculo. Aquellos puntos que no se especifiquen o regulen en las siguientes líneas, serán aplicados bajo la legislación autonómica y estatal vigente.
+        </p>
+
+        </section>
+
+    </section>
+{% endblock %}
+
+{% block aside %}
+{% endblock %}
+
+{% block pie %}
+    {{parent()}}
+{% endblock %}
+
+
+
